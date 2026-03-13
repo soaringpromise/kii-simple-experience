@@ -149,6 +149,7 @@ may override or conflict with some features.
 
 Features currently being considered or planned for future updates:
 
+- **Compatibility with newer Forge versions and Fabric port.**
 - **Toggleable Enchanted Golden Apple recipe:** Allow enabling or disabling the crafting recipe through the config.
 - Additional configuration options for existing mechanics.
 - Further small quality-of-life tweaks to XP and enchanting systems.
