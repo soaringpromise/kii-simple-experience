@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.soaringpromise.kiisimplexp.mixins.client",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "mixins.kiisimplexp.refmap.json",
+  "plugin": "net.soaringpromise.kiisimplexp.mixins.ClientMixinPlugin",
+  "mixins": [
+    "AnvilScreenLimitMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
