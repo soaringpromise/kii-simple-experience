@@ -32,10 +32,30 @@ public class CommonEvents {
 
             if (original.level().getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY)) return;
 
-            int oldXp = original.totalExperience;
+            int oldXp = getTrueCurrentXp(original);
             int keepXp = Math.round(oldXp * (Config.deathXpRetentionPercent / 100.0f));
 
             newPlayer.giveExperiencePoints(keepXp);
+        }
+    }
+
+    private static int getTrueCurrentXp(Player player) {
+        int level = player.experienceLevel;
+        int xpInCurrentLevel = Math.round(player.experienceProgress * player.getXpNeededForNextLevel());
+
+        if (Config.linearXpEnabled) {
+            int xpPerLevel = Math.max(1, Config.linearXpPerLevel);
+            return (level * xpPerLevel) + xpInCurrentLevel;
+        } else {
+            int totalXpForLevel;
+            if (level <= 15) {
+                totalXpForLevel = level * level + 6 * level;
+            } else if (level <= 30) {
+                totalXpForLevel = (int) (2.5 * level * level - 40.5 * level + 360);
+            } else {
+                totalXpForLevel = (int) (4.5 * level * level - 162.5 * level + 2220);
+            }
+            return totalXpForLevel + xpInCurrentLevel;
         }
     }
 }
